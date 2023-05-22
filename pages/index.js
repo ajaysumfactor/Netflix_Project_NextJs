@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Banner from '@/components/banner'
 const inter = Inter({ subsets: ['latin'] })
+import NavBar from '@/components/navBar'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Netflix</h1>
+      <NavBar username="ajayverma041999@gmail.com"/>
       <Banner
         title="Clifford the red dog"
         subTitle="a very cute dog"
