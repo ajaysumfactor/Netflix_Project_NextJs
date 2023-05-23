@@ -24,7 +24,7 @@ export default function Home() {
       
      
      <Card imgUrl='/static/animal.webp' size='large'/>
-     <Card imgUrl='/static/animal.webp' size='medium'/>
+     <Card/>
      <Card imgUrl='/static/animal.webp' size='small'/>
 
 
