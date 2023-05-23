@@ -5,7 +5,7 @@ import styles from '@/styles/Home.module.css'
 import Banner from '@/components/banner'
 const inter = Inter({ subsets: ['latin'] })
 import NavBar from '@/components/navBar'
-
+import Card from '@/components/card/card.js'
 export default function Home() {
   return (
     <>
@@ -21,9 +21,13 @@ export default function Home() {
         subTitle="a very cute dog"
         imgUrl="/static/animal.webp"
       />
-      {/* <NavBar />
+      
      
-     <Card /> */}
+     <Card imgUrl='/static/animal.webp' size='large'/>
+     <Card imgUrl='/static/animal.webp' size='medium'/>
+     <Card imgUrl='/static/animal.webp' size='small'/>
+
+
     </>
   )
 }
