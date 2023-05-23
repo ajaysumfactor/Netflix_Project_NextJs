@@ -25,9 +25,7 @@ export default function Home() {
       />
       
       <SectionCards title="Disney" />
-     <Card imgUrl='/static/animal.webp' size='large'/>
-     <Card/>
-     <Card imgUrl='/static/animal.webp' size='small'/>
+      
 
 
     </>
