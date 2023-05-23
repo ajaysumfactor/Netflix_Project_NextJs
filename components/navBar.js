@@ -1,8 +1,11 @@
 import styles from './navBar.module.css'
 import { useRouter } from "next/router";
+import { useState } from 'react';
 import Link from "next/link";
 const NavBar = (props) => {
     const { username } = props;
+
+    const [showDropdown, setShowDropdown] = useState(false);
     const router = useRouter();
     const handleOnClickHome = (e) => {
         e.preventDefault();
@@ -11,6 +14,10 @@ const NavBar = (props) => {
     const handleOnClickMyList = (e) => {
         e.preventDefault();
         router.push("/browse/my-list");
+    };
+    const handleShowDropdown = (e) => {
+        e.preventDefault();
+        setShowDropdown(!showDropdown);
     };
     return (
         <div className={styles.container}>
@@ -26,18 +33,20 @@ const NavBar = (props) => {
                 </ul>
                 <nav className={styles.navContainer}>
                     <div>
-                        <button className={styles.usernameBtn}>
+                        <button className={styles.usernameBtn} onClick={handleShowDropdown}>
                             <p className={styles.username}>{username}</p>
                             {/* Expand more icons */}
                         </button>
-                        <div className={styles.navDropdown}>
-                            <div>
-                                <Link href="/login" className={styles.linkName}>
-                                    Sign out
-                                </Link>
-                                <div className={styles.lineWrapper}></div>
+                        {showDropdown && (
+                            <div className={styles.navDropdown}>
+                                <div>
+                                    <Link href="/login" className={styles.linkName}>
+                                        Sign out
+                                    </Link>
+                                    <div className={styles.lineWrapper}></div>
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </div>
                 </nav>
             </div>
