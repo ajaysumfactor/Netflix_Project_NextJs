@@ -15,8 +15,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Netflix</h1>
-      <NavBar username="ajayverma041999@gmail.com"/>
+       <NavBar username="ajayverma041999@gmail.com"/>
       <Banner
         title="Clifford the red dog"
         subTitle="a very cute dog"
