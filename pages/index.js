@@ -6,6 +6,8 @@ import Banner from '@/components/banner'
 const inter = Inter({ subsets: ['latin'] })
 import NavBar from '@/components/navBar'
 import Card from '@/components/card/card.js'
+import SectionCards from "../components/card/section-cards";
+
 export default function Home() {
   return (
     <>
@@ -22,7 +24,7 @@ export default function Home() {
         imgUrl="/static/animal.webp"
       />
       
-     
+      <SectionCards title="Disney" />
      <Card imgUrl='/static/animal.webp' size='large'/>
      <Card/>
      <Card imgUrl='/static/animal.webp' size='small'/>
