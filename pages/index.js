@@ -23,8 +23,9 @@ export default function Home() {
         subTitle="a very cute dog"
         imgUrl="/static/animal.webp"
       />
-      
+      <div className={styles.sectionWrapper}>
       <SectionCards title="Disney" />
+      </div>
       
 
 
