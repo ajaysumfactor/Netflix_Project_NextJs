@@ -7,17 +7,22 @@ const inter = Inter({ subsets: ['latin'] })
 import NavBar from '@/components/navBar'
 import Card from '@/components/card/card.js'
 import SectionCards from "../components/card/section-cards";
-import {getVideos} from "../lib/videos";
+import { getVideos } from "../lib/videos";
 
 export async function getServerSideProps() {
-  const disneyVideos= await getVideos();
+  const disneyVideos = await getVideos("disney trailer");
+  const travelVideos = await getVideos("travel");
+  const productivityVideos = await getVideos("productivity");
+  const popularVideos = await getVideos("popular");
 
-  return { props: { disneyVideos } };
+
+
+  return { props: { disneyVideos, travelVideos, productivityVideos, popularVideos } };
 }
 
-export default function Home({disneyVideos}) {
+export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos }) {
   // console.log(disneyVideos);
-   return (
+  return (
     <>
       <Head>
         <title>Netflix App</title>
@@ -25,19 +30,21 @@ export default function Home({disneyVideos}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-       <NavBar username="ajayverma041999@gmail.com"/>
+      <NavBar username="ajayverma041999@gmail.com" />
       <Banner
         title="Clifford the red dog"
         subTitle="a very cute dog"
         imgUrl="/static/animal.webp"
       />
       <div className={styles.sectionWrapper}>
-      <SectionCards title="Disney" videos={disneyVideos} size="large" />
-      <SectionCards title="Disney" videos={disneyVideos} size="medium" />
-      <SectionCards title="Disney" videos={disneyVideos} size="small" />
+        <SectionCards title="Disney" videos={disneyVideos} size="large" />
+        <SectionCards title="Travel" videos={travelVideos} size="small" />
+        <SectionCards title="Productivity" videos={productivityVideos} size="medium" />
+        <SectionCards title="Popular" videos={popularVideos} size="small" />
+
 
       </div>
-      
+
 
 
     </>
