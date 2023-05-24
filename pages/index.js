@@ -9,6 +9,18 @@ import Card from '@/components/card/card.js'
 import SectionCards from "../components/card/section-cards";
 
 export default function Home() {
+  const disneyVideos=[
+    {
+      imgUrl: '/static/animal.webp',
+
+    },
+    {
+      imgUrl: '/static/animal.webp',
+    },
+    {
+      imgUrl: '/static/animal.webp',
+    },
+  ]
   return (
     <>
       <Head>
@@ -24,7 +36,10 @@ export default function Home() {
         imgUrl="/static/animal.webp"
       />
       <div className={styles.sectionWrapper}>
-      <SectionCards title="Disney" />
+      <SectionCards title="Disney" videos={disneyVideos} size="large" />
+      <SectionCards title="Disney" videos={disneyVideos} size="medium" />
+      <SectionCards title="Disney" videos={disneyVideos} size="small" />
+
       </div>
       
 
