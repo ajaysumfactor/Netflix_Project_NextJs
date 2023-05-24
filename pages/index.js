@@ -7,20 +7,9 @@ const inter = Inter({ subsets: ['latin'] })
 import NavBar from '@/components/navBar'
 import Card from '@/components/card/card.js'
 import SectionCards from "../components/card/section-cards";
-
+import {getVideos} from "../lib/videos";
 export default function Home() {
-  const disneyVideos=[
-    {
-      imgUrl: '/static/animal.webp',
-
-    },
-    {
-      imgUrl: '/static/animal.webp',
-    },
-    {
-      imgUrl: '/static/animal.webp',
-    },
-  ]
+  const disneyVideos= getVideos();
   return (
     <>
       <Head>
