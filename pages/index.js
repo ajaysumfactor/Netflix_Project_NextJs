@@ -30,6 +30,8 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className={styles.main}>
+
       <NavBar username="ajayverma041999@gmail.com" />
       <Banner
         title="Clifford the red dog"
@@ -43,6 +45,7 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
         <SectionCards title="Popular" videos={popularVideos} size="small" />
 
 
+      </div>
       </div>
 
 
