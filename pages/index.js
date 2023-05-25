@@ -8,7 +8,6 @@ import NavBar from '@/components/navBar'
 import Card from '@/components/card/card.js'
 import SectionCards from "../components/card/section-cards";
 import { getVideos ,getPopularVideos} from "../lib/videos";
-import {magic} from "../lib/magic-client";
 
 export async function getServerSideProps() {
   const disneyVideos = await getVideos("disney trailer");

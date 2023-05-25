@@ -4,6 +4,8 @@ import Head from "next/head";
 import Link from 'next/link';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import {magic} from "../lib/magic-client.js";
+
 
 
 const Login = () => {
@@ -18,13 +20,21 @@ const Login = () => {
         const email = e.target.value;
         setEmail(email);
     }
-    const handleLoginWithEmail = (e) => {
-        // console.log("Say hii! button");
+    const handleLoginWithEmail = async(e) => {
+        console.log("Say hii! button");
         e.preventDefault();
         if (email) {
-            if(email==='ajayverma041999@gmail.com'){
+            if(email==='ajayverma.sumfactor@gmail.com'){
             //    console.log("user logged in ")
-               router.push("/");
+            //    router.push("/");
+            try {
+                const DIDToken = await magic.auth.loginWithMagicLink({
+                    email,
+                 });
+                 console.log(DIDToken);
+              } catch(error) {
+                console.log("DIDTOKEN Error",error);
+               }
 
             }
             else{
