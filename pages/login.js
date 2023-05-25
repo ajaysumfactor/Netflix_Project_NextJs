@@ -7,11 +7,11 @@ const Login = () => {
         console.log("Say hii! button");
         e.preventDefault();
     }
-    return <div>
+    return <div className={styles.container}>
         <Head>
             <title>Netflix SignIn</title>
         </Head>
-        <header>
+        <header className={styles.header}>
             <div className={styles.headerWrapper}>
                 <Link className={styles.logoLink} href="/">
                     <div className={styles.logoWrapper}>
@@ -24,6 +24,7 @@ const Login = () => {
                     </div>
                 </Link>
             </div>
+            </header>
 
 
         <main className={styles.main}>
@@ -38,7 +39,7 @@ const Login = () => {
 
 
 
-        </header>
+       
     </div>
 }
 
