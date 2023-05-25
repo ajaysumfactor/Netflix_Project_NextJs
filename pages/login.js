@@ -2,10 +2,27 @@ import styles from '../styles/Login.module.css'
 import Image from 'next/image';
 import Head from "next/head";
 import Link from 'next/link';
+import { useState } from 'react';
 const Login = () => {
-    const handleLoginWithEmail=(e)=>{
-        console.log("Say hii! button");
+    const [email, setEmail] = useState("");
+    const [userMsg, setUserMsg] = useState("");
+
+    const handleOnChangeEmail = (e) => {
+        //    console.log("event",e);
+        setUserMsg("");
+        const email = e.target.value;
+        setEmail(email);
+    }
+    const handleLoginWithEmail = (e) => {
+        // console.log("Say hii! button");
         e.preventDefault();
+        if (email) {
+
+        }
+        else {
+            setUserMsg("Enter a valid email address");
+            // console.log("Please enter the email correct ")
+        }
     }
     return <div className={styles.container}>
         <Head>
@@ -24,22 +41,26 @@ const Login = () => {
                     </div>
                 </Link>
             </div>
-            </header>
+        </header>
 
 
         <main className={styles.main}>
             <div className={styles.mainWrapper}>
-             <h1 className={styles.signinHeader}>Sign In </h1>
-             <input type="text" placeholder='Email Address' className={styles.emailInput}/>
-             <p className={styles.userMsg}></p>
-             <button onClick={handleLoginWithEmail} className={styles.loginBtn}>Sign In</button>
-             </div>
+                <h1 className={styles.signinHeader}>Sign In </h1>
+
+                <input type="text" placeholder='Email Address' className={styles.emailInput}
+                    onChange={handleOnChangeEmail} />
+
+                <p className={styles.userMsg}>{userMsg}</p>
+
+                <button onClick={handleLoginWithEmail} className={styles.loginBtn}>Sign In</button>
+            </div>
         </main>
 
 
 
 
-       
+
     </div>
 }
 
