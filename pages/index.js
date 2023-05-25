@@ -7,13 +7,13 @@ const inter = Inter({ subsets: ['latin'] })
 import NavBar from '@/components/navBar'
 import Card from '@/components/card/card.js'
 import SectionCards from "../components/card/section-cards";
-import { getVideos } from "../lib/videos";
+import { getVideos ,getPopularVideos} from "../lib/videos";
 
 export async function getServerSideProps() {
   const disneyVideos = await getVideos("disney trailer");
-  const travelVideos = await getVideos("travel");
-  const productivityVideos = await getVideos("productivity");
-  const popularVideos = await getVideos("popular");
+  const travelVideos = await getVideos("travel trailer");
+  const productivityVideos = await getVideos("productivity trailer");
+  const popularVideos = await getPopularVideos();
 
 
 
