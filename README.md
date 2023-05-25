@@ -24,7 +24,11 @@
 ### Data-fetching--Server side rendering
 
 ### Implement three section 
+#### Home section
     1. Disney
     2. Productivity
     3. Travel
     4. Popular Videos
+
+# =====================================================================================================================
+# Section_15
