@@ -3,7 +3,12 @@ import Image from 'next/image';
 import Head from "next/head";
 import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
+
+
 const Login = () => {
+    const router = useRouter();
+
     const [email, setEmail] = useState("");
     const [userMsg, setUserMsg] = useState("");
 
@@ -17,6 +22,14 @@ const Login = () => {
         // console.log("Say hii! button");
         e.preventDefault();
         if (email) {
+            if(email==='ajayverma041999@gmail.com'){
+            //    console.log("user logged in ")
+               router.push("/");
+
+            }
+            else{
+                setUserMsg("something went wrong!");
+            }
 
         }
         else {
