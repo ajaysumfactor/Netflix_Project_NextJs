@@ -4,8 +4,24 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Banner from '@/components/banner'
 const inter = Inter({ subsets: ['latin'] })
+import NavBar from '@/components/navBar'
+import Card from '@/components/card/card.js'
+import SectionCards from "../components/card/section-cards";
+import { getVideos ,getPopularVideos} from "../lib/videos";
 
-export default function Home() {
+export async function getServerSideProps() {
+  const disneyVideos = await getVideos("disney trailer");
+  const travelVideos = await getVideos("travel trailer");
+  const productivityVideos = await getVideos("productivity trailer");
+  const popularVideos = await getPopularVideos();
+
+
+
+  return { props: { disneyVideos, travelVideos, productivityVideos, popularVideos } };
+}
+
+export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos }) {
+  // console.log(disneyVideos);
   return (
     <>
       <Head>
@@ -14,11 +30,26 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     <h1>Netflix</h1>
-     <Banner />
-     {/* <NavBar />
-     
-     <Card /> */}
+      <div className={styles.main}>
+
+      <NavBar username="ajayverma041999@gmail.com" />
+      <Banner
+        title="Clifford the red dog"
+        subTitle="a very cute dog"
+        imgUrl="/static/animal.webp"
+      />
+      <div className={styles.sectionWrapper}>
+        <SectionCards title="Disney" videos={disneyVideos} size="large" />
+        <SectionCards title="Travel" videos={travelVideos} size="small" />
+        <SectionCards title="Productivity" videos={productivityVideos} size="medium" />
+        <SectionCards title="Popular" videos={popularVideos} size="small" />
+
+
+      </div>
+      </div>
+
+
+
     </>
   )
 }
