@@ -2,7 +2,7 @@ import styles from '../styles/Login.module.css'
 import Image from 'next/image';
 import Head from "next/head";
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {magic} from "../lib/magic-client.js";
 
@@ -14,6 +14,21 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [userMsg, setUserMsg] = useState("");
     const [isLoading,setIsLoading]=useState(false);
+    useEffect(() => {
+        async function loginDelay(){
+        const handleComplete = () => {
+          setIsLoading(false);
+        };
+        router.events.on("routeChangeComplete", handleComplete);
+        router.events.on("routeChangeError", handleComplete);
+    
+        return () => {
+          router.events.off("routeChangeComplete", handleComplete);
+          router.events.off("routeChangeError", handleComplete);
+        };
+    }
+    loginDelay();
+      }, [router]);
 
     const handleOnChangeEmail = (e) => {
         //    console.log("event",e);
@@ -35,7 +50,7 @@ const Login = () => {
                  });
                  console.log(DIDToken);
                  if(DIDToken){//render to home page if DIDToken is successfully generated 
-                    setIsLoading(false);
+                    // setIsLoading(false);
                     router.push("/");
                  }
               } catch(error) {
