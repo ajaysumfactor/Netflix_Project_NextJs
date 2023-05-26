@@ -81,5 +81,6 @@
         3. Count view
         4. time
         5. cast
-        6. summery
-         
+        6. summery 
+
+#### Create Dynamic route VideoId page
