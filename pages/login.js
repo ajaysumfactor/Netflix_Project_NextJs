@@ -13,6 +13,7 @@ const Login = () => {
 
     const [email, setEmail] = useState("");
     const [userMsg, setUserMsg] = useState("");
+    const [isLoading,setIsLoading]=useState(false);
 
     const handleOnChangeEmail = (e) => {
         //    console.log("event",e);
@@ -23,6 +24,7 @@ const Login = () => {
     const handleLoginWithEmail = async(e) => {
         console.log("Say hii! button");
         e.preventDefault();
+        setIsLoading(true);
         if (email) {
             if(email==='tigersis1995@gmail.com'){
             //    console.log("user logged in ")
@@ -33,19 +35,24 @@ const Login = () => {
                  });
                  console.log(DIDToken);
                  if(DIDToken){//render to home page if DIDToken is successfully generated 
+                    setIsLoading(false);
                     router.push("/");
                  }
               } catch(error) {
+                setIsLoading(false);
                 console.log("DIDTOKEN Error",error);
                }
 
             }
             else{
+                setIsLoading(false);
+
                 setUserMsg("something went wrong!");
             }
 
         }
         else {
+            setIsLoading(false);
             setUserMsg("Enter a valid email address");
             // console.log("Please enter the email correct ")
         }
@@ -79,7 +86,7 @@ const Login = () => {
 
                 <p className={styles.userMsg}>{userMsg}</p>
 
-                <button onClick={handleLoginWithEmail} className={styles.loginBtn}>Sign In</button>
+                <button onClick={handleLoginWithEmail} className={styles.loginBtn}>{isLoading ? "Loading..." : 'Sign In'}</button>
             </div>
         </main>
 
