@@ -33,7 +33,7 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
       </Head>
       <div className={styles.main}>
 
-      <NavBar username="ajayverma041999@gmail.com" />
+      <NavBar />
       <Banner
         title="Clifford the red dog"
         subTitle="a very cute dog"
