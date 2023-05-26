@@ -24,7 +24,7 @@ const Login = () => {
         console.log("Say hii! button");
         e.preventDefault();
         if (email) {
-            if(email==='ajayverma.sumfactor@gmail.com'){
+            if(email==='tigersis1995@gmail.com'){
             //    console.log("user logged in ")
             //    router.push("/");
             try {
@@ -32,6 +32,9 @@ const Login = () => {
                     email,
                  });
                  console.log(DIDToken);
+                 if(DIDToken){//render to home page if DIDToken is successfully generated 
+                    router.push("/");
+                 }
               } catch(error) {
                 console.log("DIDTOKEN Error",error);
                }
