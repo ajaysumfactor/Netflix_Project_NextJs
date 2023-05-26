@@ -73,3 +73,13 @@
 
 ## ============================================================================================================
 # Section_16:->>>>>>>>>>
+
+# Project Architecture
+    TO Make a brand new Model page such that We click on any card of Homepage of our project There must open full page containing:---
+        1. Youtube video player 
+        2. Discription
+        3. Count view
+        4. time
+        5. cast
+        6. summery
+         
