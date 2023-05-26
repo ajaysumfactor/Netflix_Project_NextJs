@@ -1,13 +1,30 @@
 import styles from './navBar.module.css'
 import { useRouter } from "next/router";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-const NavBar = (props) => {
-    const { username } = props;
+import { magic } from "../lib/magic-client.js";
+
+const NavBar = () => {
+    // const { username } = props;
+    const [username, setUserName] = useState('');
 
     const [showDropdown, setShowDropdown] = useState(false);
     const router = useRouter();
+    useEffect(() => {
+        async function getUserName() {
+            try {
+                const { email, publicAddress } = await magic.user.getMetadata();
+                if (email) {
+                    setUserName(email);
+                }
+            } catch (error) {
+                console.error("metadata magic email error: ", error);
+            }
+        }
+        getUserName();
+    }, []);
+
     const handleOnClickHome = (e) => {
         e.preventDefault();
         router.push("/");
@@ -20,6 +37,17 @@ const NavBar = (props) => {
         e.preventDefault();
         setShowDropdown(!showDropdown);
     };
+    const handleSignOut = async (e) => {
+        e.preventDefault();
+        try {
+            await magic.user.logout();
+            console.log(await magic.user.isLoggedIn());
+            router.push("/login"); // => `true` or `false`
+        } catch (error) {
+            console.error("error logging out : ", error);
+            router.push("/login");
+        }
+    }
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
@@ -57,7 +85,7 @@ const NavBar = (props) => {
                         {showDropdown && (
                             <div className={styles.navDropdown}>
                                 <div>
-                                    <Link href="/login" className={styles.linkName}>
+                                    <Link href="/login" className={styles.linkName} onClick={handleSignOut}>
                                         Sign out
                                     </Link>
                                     <div className={styles.lineWrapper}></div>
