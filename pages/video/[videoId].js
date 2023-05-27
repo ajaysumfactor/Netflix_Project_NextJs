@@ -8,12 +8,13 @@ const Video = () =>{
     const router=useRouter();
     console.log({router});
     return(
-    <div>video page {router.query.videoId}
+    <div className={styles.container}>
     <Modal
         isOpen={true}
         contentLabel="Watch the video"
         onRequestClose={() => router.back()}
-        overlayClassName={styles.overlay}  >
+        overlayClassName={styles.overlay}
+        className={styles.modal} >
         <div>must visible</div>
           </Modal>
     </div>
