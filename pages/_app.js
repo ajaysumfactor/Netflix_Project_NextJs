@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { magic } from "../lib/magic-client";
-import Loading from "../components/loading/loading";
+import Loading from "../components/loading/loading.js";
 
 
 export default function App({ Component, pageProps }) {
@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }) {
     handleLoggedIn();
   }, []);
   useEffect(() => {
-    async function loginDelay(){
+    function loginDelay(){
     const handleComplete = () => {
       setIsLoading(false);
     };
