@@ -1,26 +1,45 @@
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import Modal from 'react-modal';
 import styles from '../../styles/Video.module.css'
 import clsx from "classnames";
 Modal.setAppElement('#__next');
 
- 
-const Video = () =>{
-    const router=useRouter();
-    console.log({router});
-    const video = {
-        title: "Hi cat",
-        publishTime: "1990-01-01",
-        description: "A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger?",
-        channelTitle: "Paramount Pictures",
-        viewCount: 10000,
-    }
 
-    const {title,publishTime,description,channelTitle,viewCount}=video;
 
-    return(
+export async function getStaticProps() {
+  const video = {
+    title: "Hi cat",
+    publishTime: "1990-01-01",
+    description: "A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger? A big red dog that is super cute, can he get any bigger?",
+    channelTitle: "Paramount Pictures",
+    viewCount: 10000,
+  };
+  return {
+    props: {
+      video,
+    },
+    revalidate: 10,
+  };
+}
+export async function getStaticPaths() {
+  const listOfVideos = ["mYfJxlgR2jw", "4zH5iYM4wJo", "KCPEHsAViiQ"];
+  const paths = listOfVideos.map((videoId) => ({
+    params: { videoId },
+  }));
+
+  return { paths, fallback: "blocking" };
+}
+
+
+const Video = ({ video }) => {
+
+  const router = useRouter();
+  console.log({ router });
+  const { title, publishTime, description, channelTitle, viewCount } = video;
+
+  return (
     <div className={styles.container}>
-    <Modal
+      <Modal
         isOpen={true}
         contentLabel="Watch the video"
         onRequestClose={() => router.back()}
@@ -28,7 +47,7 @@ const Video = () =>{
         className={styles.modal} >
 
 
-<iframe
+        <iframe
           id="ytplayer"
           className={styles.videoPlayer}
           type="text/html"
@@ -37,7 +56,7 @@ const Video = () =>{
           src={`https://www.youtube.com/embed/${router.query.videoId}?autoplay=0&origin=http://example.com&controls=1&rel=1`}
           frameBorder="0"
         ></iframe>
-          <div className={styles.modalBody}>
+        <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>
             <div className={styles.col1}>
               <p className={styles.publishTime}>{publishTime}</p>
@@ -56,13 +75,14 @@ const Video = () =>{
             </div>
           </div>
         </div>
-          
 
 
-           </Modal>
+
+      </Modal>
     </div>
-    );
+  );
 };
+
 
 export default Video;
 
