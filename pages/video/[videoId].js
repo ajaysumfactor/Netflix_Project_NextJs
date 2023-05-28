@@ -7,7 +7,7 @@ Modal.setAppElement('#__next');
 
 
 
-export async function getStaticProps() {
+export async function getStaticProps(context) {
   // const video = {
   //   title: "Hi cat",
   //   publishTime: "1990-01-01",
@@ -15,7 +15,8 @@ export async function getStaticProps() {
   //   channelTitle: "Paramount Pictures",
   //   viewCount: 10000,
   // };
-  const videoId = "4zH5iYM4wJo";
+  // console.log({context});
+  const videoId = context.params.videoId;
   const videoArray = await getYouTubeVideoById(videoId);
   return {
     props: {
@@ -37,9 +38,9 @@ export async function getStaticPaths() {
 const Video = ({ video }) => {
 
   const router = useRouter();
-  console.log("router------------------------------------------------->",router);
-  const { title, publishTime, description, channelTitle,statistics: { viewCount } = { viewCount: 0 },
-} = video;
+  console.log("router------------------------------------------------->", router);
+  const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 },
+  } = video;
 
   return (
     <div className={styles.container}>
