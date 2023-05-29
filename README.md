@@ -69,3 +69,25 @@
 #### Route App once user login
 #### Fixed Routing Flicker with login
 #### Implemet Loading component(loding...)[https://projects.lukehaas.me/css-loaders/]
+
+
+## ============================================================================================================
+# Section_16:->>>>>>>>>>
+
+# Project Architecture
+    TO Make a brand new Model page such that We click on any card of Homepage of our project There must open full page containing:---
+        1. Youtube video player 
+        2. Discription
+        3. Count view
+        4. time
+        5. cast
+        6. summery 
+
+#### Create Dynamic route VideoId page
+#### Install react modal Component And use When we click on any card we go to detail of card with youtube player by id ,title,discription,viewcount.
+#### Style modal component
+#### Implement Youtube API Player
+#### style YouTube Player
+#### Data fetching technique :-Incremental static Regeneration(view count)
+#### Implement content using Youtube Api by ID
+#### Implement navBar on dynamic route ([videoId].js);
