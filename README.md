@@ -91,3 +91,6 @@
 #### Data fetching technique :-Incremental static Regeneration(view count)
 #### Implement content using Youtube Api by ID
 #### Implement navBar on dynamic route ([videoId].js);
+
+# ===================================================================================================================
+# Section_17:----->>>>>>
