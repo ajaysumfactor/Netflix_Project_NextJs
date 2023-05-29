@@ -84,3 +84,10 @@
         6. summery 
 
 #### Create Dynamic route VideoId page
+#### Install react modal Component And use When we click on any card we go to detail of card with youtube player by id ,title,discription,viewcount.
+#### Style modal component
+#### Implement Youtube API Player
+#### style YouTube Player
+#### Data fetching technique :-Incremental static Regeneration(view count)
+#### Implement content using Youtube Api by ID
+#### Implement navBar on dynamic route ([videoId].js);
