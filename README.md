@@ -124,6 +124,34 @@
 #### Hasura API Explorer
 #### Signup on Hasura and gone through dashboard
 #### Hasura create PostGres Database
-#### 
+#### set up database
+    1. make table named--users,stats(connect them with foreign key)
+    2. Assign User role
+#### step:--To use a JWT and permissions to limit a query to only the user making the request.
+    (steps...)[https://hasura.io/docs/latest/auth/quickstart/]
+
+
+### JWT (Json Web Token)
+    1. Header-->encryption Algorithms
+    2. Payload--->Unique id 
+    3. Signature-->(secret key + unique_id+ Algo)
+    4. JWT Token :- Header.Payload.Signature
+#### Secret key 
+    Only backend have secret key.
+    Frontend dont have secret key.
+
+### How JWT Works ?
+    1. 1st time request ---signature
+    2. response send(JWT)
+    3. Again request(JWT).
+    4. Now backend will verify user in such a way
+        (Take--(header+payload) from front end) and mix their secret key---->make "new signature".
+        if(frontend signature===new signature)
+            valid user
+        else
+            Abort mission
+
+
+
 
     
