@@ -91,3 +91,67 @@
 #### Data fetching technique :-Incremental static Regeneration(view count)
 #### Implement content using Youtube Api by ID
 #### Implement navBar on dynamic route ([videoId].js);
+
+# ===================================================================================================================
+# Section_17:----->>>>>>
+
+## Overview
+    Set up all necessary things for the "watch it again" section.
+
+#### watch it again:----list of video just i saw.
+#### My list:---->contained list of liked video 
+    like----added
+    dislike---removed from the mylist
+    Not build recommendations things
+### GraphQL
+    1. query language that is going to query to database give specific json object.
+    2. we can specify in query language to only return ,data that i only looking for.
+    3.specific data from API.
+     if(specific data)-->Does not matter ||low speed || high speed internet
+    4. In graphQL it does not matter from where i do get data from.
+
+### Mutation:--
+    updating
+    deleting
+    creating new data
+
+### Hasura
+    1. It add layer on top of graphQL on the top of database.
+    2. Easier way where i necessary not need to build graphQL server from scratch.
+    3. All Hasura needs database.
+    4. We do not need to go ahead and write any sort of sql query at all.
+        database------>Hasura<-------->graphQl(user only write graphQL query and get response)
+#### Hasura API Explorer
+#### Signup on Hasura and gone through dashboard
+#### Hasura create PostGres Database
+#### set up database
+    1. make table named--users,stats(connect them with foreign key)
+    2. Assign User role
+#### step:--To use a JWT and permissions to limit a query to only the user making the request.
+##### (steps...)[https://hasura.io/docs/latest/auth/quickstart/]
+
+
+### JWT (Json Web Token)
+    1. Header-->encryption Algorithms
+    2. Payload--->Unique id 
+    3. Signature-->(secret key + unique_id+ Algo)
+    4. JWT Token :- Header.Payload.Signature
+#### Secret key 
+    Only backend have secret key.
+    Frontend dont have secret key.
+
+### How JWT Works ?
+    1. 1st time request ---signature
+    2. response send(JWT)
+    3. Again request(JWT).
+    4. Now backend will verify user in such a way
+        (Take--(header+payload) from front end) and mix their secret key---->make "new signature".
+        if(frontend signature===new signature)
+            valid user
+        else
+            Abort mission
+
+
+
+
+    

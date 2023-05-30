@@ -8,7 +8,9 @@ import NavBar from '@/components/navBar'
 import Card from '@/components/card/card.js'
 import SectionCards from "../components/card/section-cards";
 import { getVideos ,getPopularVideos} from "../lib/videos";
+import { startFetchMyQuery } from "../lib/db/hasura";
 
+ 
 export async function getServerSideProps() {
   const disneyVideos = await getVideos("disney trailer");
   const travelVideos = await getVideos("travel trailer");
@@ -23,7 +25,9 @@ export async function getServerSideProps() {
 export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos }) {
   // console.log(disneyVideos);
   // console.log({magic});
-  return (
+  startFetchMyQuery();
+
+   return (
     <>
       <Head>
         <title>Netflix App</title>
