@@ -128,7 +128,7 @@
     1. make table named--users,stats(connect them with foreign key)
     2. Assign User role
 #### step:--To use a JWT and permissions to limit a query to only the user making the request.
-    (steps...)[https://hasura.io/docs/latest/auth/quickstart/]
+##### (steps...)[https://hasura.io/docs/latest/auth/quickstart/]
 
 
 ### JWT (Json Web Token)
