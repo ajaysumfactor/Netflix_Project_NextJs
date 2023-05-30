@@ -121,5 +121,9 @@
     3. All Hasura needs database.
     4. We do not need to go ahead and write any sort of sql query at all.
         database------>Hasura<-------->graphQl(user only write graphQL query and get response)
+#### Hasura API Explorer
+#### Signup on Hasura and gone through dashboard
+#### Hasura create PostGres Database
+#### 
 
     
