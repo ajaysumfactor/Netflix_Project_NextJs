@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { mAdmin } from "@/lib/magic";
+import { isNewUser } from '@/lib/db/hasura';
 export default async function login(req, res) {
     if (req.method === "POST") {
         try {
@@ -27,7 +28,11 @@ export default async function login(req, res) {
                   },'abcdefghabcdefghabcdefgh12345678'
             );
             console.log({token});
-            res.send({ done: true });
+
+            // implement if user exist?
+            const isNewUserQuery = await isNewUser(token);
+
+            res.send({ done: true,isNewUserQuery });
         }
         catch (error) {
             console.error("something went wrong logging in", error);
