@@ -25,12 +25,12 @@ export default async function login(req, res) {
                       "x-hasura-allowed-roles": ["user", "admin"],
                       "x-hasura-user-id": `${metadata.issuer}`,
                       },
-                  },'abcdefghabcdefghabcdefgh12345678'
+                  },process.env.JWT_SECRET
             );
-            console.log({token});
+            // console.log({token});
 
             // implement if user exist?
-            const isNewUserQuery = await isNewUser(token);
+            const isNewUserQuery = await isNewUser(token,metadata.issuer);
 
             res.send({ done: true,isNewUserQuery });
         }

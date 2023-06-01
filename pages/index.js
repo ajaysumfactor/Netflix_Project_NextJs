@@ -25,7 +25,7 @@ export async function getServerSideProps() {
 export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos }) {
   // console.log(disneyVideos);
   // console.log({magic});
-  // startFetchMyQuery();
+  startFetchMyQuery();
 
    return (
     <>
