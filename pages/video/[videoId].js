@@ -13,7 +13,7 @@ import Dislike from '@/components/icons/like-icon';
 export async function getStaticProps(context) {
   const videoId = context.params.videoId;
   const videoArray = await getYouTubeVideoById(videoId);
-  console.log("--------videoArray",videoArray);
+  console.log("--------videoArray", videoArray);
   return {
     props: {
       video: videoArray.length > 0 ? videoArray[0] : {},
@@ -40,7 +40,7 @@ const Video = ({ video }) => {
 
   return (
     <div className={styles.container}>
-      <NavBar/>
+      <NavBar />
       <Modal
         isOpen={true}
         contentLabel="Watch the video"
@@ -61,12 +61,19 @@ const Video = ({ video }) => {
         {/* Like and dislike icon here */}
 
         <div className={styles.likeDislikeBtnWrapper}>
-        <div className={styles.btnWrapper}>
-        <button><Like/></button>
-        </div>
-        <div className={styles.btnWrapper}>
-        <button><Dislike/></button>
-        </div>
+          <div className={styles.likeBtnWrapper}>
+        <button>
+          <div className={styles.btnWrapper}>
+            <Like />
+          </div>
+          </button>
+          </div>
+
+          <button>
+          <div className={styles.btnWrapper}>
+            <Dislike />
+          </div>
+          </button>
         </div>
 
 
