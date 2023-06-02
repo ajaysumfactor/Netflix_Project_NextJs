@@ -9,12 +9,11 @@ export default async function stats(req, res) {
                 res.status(403).send({});
             }
             else {
-                const decoded = jwt.verify(token, process.env.JWT_SECRET);
-                console.log({ decoded });
-                const userId = "did:ethr:0xFF9D7617bED57730B9DbedE6fA4327E9eB5c6B50";
-                const videoId = "4zH5iYM4wJo";
+                const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+                 const userId = decodedToken.issuer;
+                const videoId = req.query.videoId;
                 const findVideoId = await findVideoIdByUser(token,userId,videoId);
-                res.send({ msg: "it's working", decoded,findVideoId });
+                res.send({ msg: "it's working", decodedToken,findVideoId });
             }
         }
         catch (error) {
