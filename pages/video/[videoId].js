@@ -5,6 +5,8 @@ import clsx from "classnames";
 import { getYouTubeVideoById } from '@/lib/videos';
 import NavBar from '@/components/navBar';
 Modal.setAppElement('#__next');
+import Like from '@/components/icons/like-icon';
+import Dislike from '@/components/icons/like-icon';
 
 
 
@@ -56,6 +58,19 @@ const Video = ({ video }) => {
           src={`https://www.youtube.com/embed/${router.query.videoId}?autoplay=0&origin=http://example.com&controls=1&rel=1`}
           frameBorder="0"
         ></iframe>
+        {/* Like and dislike icon here */}
+
+        <div className={styles.likeDislikeBtnWrapper}>
+        <div className={styles.btnWrapper}>
+        <button><Like/></button>
+        </div>
+        <div className={styles.btnWrapper}>
+        <button><Dislike/></button>
+        </div>
+        </div>
+
+
+
         <div className={styles.modalBody}>
           <div className={styles.modalBodyContent}>
             <div className={styles.col1}>
