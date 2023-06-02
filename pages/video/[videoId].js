@@ -7,6 +7,7 @@ import NavBar from '@/components/navBar';
 Modal.setAppElement('#__next');
 import Like from '@/components/icons/like-icon';
 import Dislike from '@/components/icons/like-icon';
+import { useState } from 'react';
 
 
 
@@ -34,10 +35,22 @@ export async function getStaticPaths() {
 const Video = ({ video }) => {
 
   const router = useRouter();
+  const [toggleLike,setToggleLike]=useState(false);
+  const [toggleDisLike,setToggleDisLike]=useState(false);
   console.log("router------------------------------------------------->", router);
   const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 },
   } = video;
 
+  const handleToggleDislike=async()=>{
+    console.log("handleToggleDislike");
+    setToggleDisLike(!toggleDisLike);
+    setToggleLike(toggleDisLike);
+  }
+  const handleToggleLike=async ()=>{
+    console.log("handleToggleLike");
+    setToggleLike(!toggleLike);
+    setToggleDisLike(toggleLike);
+  }
   return (
     <div className={styles.container}>
       <NavBar />
@@ -62,16 +75,16 @@ const Video = ({ video }) => {
 
         <div className={styles.likeDislikeBtnWrapper}>
           <div className={styles.likeBtnWrapper}>
-        <button>
+        <button onClick={handleToggleLike}>
           <div className={styles.btnWrapper}>
-            <Like />
+            <Like selected={toggleLike}/>
           </div>
           </button>
           </div>
 
-          <button>
+          <button onClick={handleToggleDislike}>
           <div className={styles.btnWrapper}>
-            <Dislike />
+            <Dislike selected={toggleDisLike}/>
           </div>
           </button>
         </div>
