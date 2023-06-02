@@ -25,7 +25,7 @@ export async function getServerSideProps() {
 export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos }) {
   // console.log(disneyVideos);
   // console.log({magic});
-  startFetchMyQuery();
+  // startFetchMyQuery();
 
    return (
     <>
@@ -39,8 +39,8 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
 
       <NavBar />
       <Banner
-        title="Clifford the red dog"
-        subTitle="a very cute dog"
+        title="Clifford the good cat"
+        subTitle="a very cute cat"
         imgUrl="/static/animal.webp"
         videoId="4zH5iYM4wJo"
       />

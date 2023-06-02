@@ -151,7 +151,66 @@
         else
             Abort mission
 
+# =====================================================================================================================
+# Section_18 
+GraphQL Used By--facebook,intuit,pinerest,Github,Coursera,Paypal,Starbugs
+
+## Overview
+1. Make A login API.
+    1. Authorization_token.
+    2. Create new JSON token(JWT)
+    3. Now check If(new user in hasura)
+                {
+                    Create the user and save data in hasura(GQL Mutation)-->Store token as cookie
+                }
+                else
+                {
+                   Store token as cookie
+                }
+
+
+### Steps
+
+#### Authorization
+    1. Install the Magic Admin SDK to get started.(npm install --save @magic-sdk/admin)
+    2. Create SDK Instance.
+    3. Retriving user information 
+        const metadata = await mAdmin.users.getMetadataByToken(DIDToken);
+        metadata have -->issuer,email,publicAddress
+
+#### Login API Create Auth Header.
+#### Login API Magic server side SDK.
+#### Login Api Magic server side SDK Testing.
+#### Crete JWT Token
+    1. Install jsonWebtoken (npm install jsonwebtoken).
+    2. create token (token=jwt.sign(payload,secret/private key,{options}))
+        payload--have "metadata"
+
+#### Login API Created JSON WEB Token in console.
+#### Check if a user exist in hasura 
+#### if(new user)
+    {
+        Create new user store information in hasura(GraphQL Mutation)--store cookie
+    }
+    else
+    {
+       store cookie
+    }
+#### Login Api create new user(mutation) Hasura if new user.
+ 
+#### cookie
+    1. small piece of data server sends to a browser and browser stored Automatically in browser for specific website,and that data (token in our case).
+    2. An HTTP cookie is used to tell if two requests come from the same browser—keeping a user logged in.
+    
+#### Setting cookie
+    1. Install cookie (npm install cookie)
+    2. const setCookie = cookie.serialize('name',value,{Optional});
+        maxAge:--
+        secure:--localhost--false,production--true
+        Path:--Specifies the value for the Path
 
 
 
+#### Login API Set token cookie 
+#### Invoked login API in login
     
