@@ -17,9 +17,10 @@ export default async function stats(req, res) {
                 {
                     //update it
                     const response=await updateStats(token, {
-                        watched: true,
+                        watched: false,
                         userId,
                         videoId: "ctlz0R1tSZE",
+                        favourited:1,
                       });
                       res.send({ msg: "it works", response });
  
