@@ -35,6 +35,7 @@ export async function getStaticPaths() {
 const Video = ({ video }) => {
 
   const router = useRouter();
+  const videoId=router.query.videoId;
   const [toggleLike,setToggleLike]=useState(false);
   const [toggleDisLike,setToggleDisLike]=useState(false);
   console.log("router------------------------------------------------->", router);
@@ -45,11 +46,38 @@ const Video = ({ video }) => {
     console.log("handleToggleDislike");
     setToggleDisLike(!toggleDisLike);
     setToggleLike(toggleDisLike);
-  }
+    const val=!toggleDisLike;
+    const response = await fetch("/api/stats",{
+      method:"POST",
+      body: JSON.stringify({
+        videoId,
+        favourited: val ? 0 : 1,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    });
+    console.log("data",await response.json());
+  };
   const handleToggleLike=async ()=>{
     console.log("handleToggleLike");
     setToggleLike(!toggleLike);
     setToggleDisLike(toggleLike);
+    const val=!toggleLike;
+    const response = await fetch("/api/stats",{
+      method:"POST",
+      body: JSON.stringify({
+        videoId,
+        favourited: val ? 1 : 0,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+    });
+    console.log("data",await response.json());
+
   }
   return (
     <div className={styles.container}>
