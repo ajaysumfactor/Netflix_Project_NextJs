@@ -9,12 +9,15 @@ export default async function stats(req, res) {
                 res.status(403).send({});
             }
             else {
-                const { videoId, favourited, watched = true } = req.body;
+                const { videoId } = req.body;
                 if (videoId) {
                     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
                     const userId = decodedToken.issuer;
 
-                    const doesStatsExist = await findVideoIdByUser(token, userId, videoId);console.log({doesStatsExist})
+                    const findVideo = await findVideoIdByUser(token, userId, videoId);
+                    const doesStatsExist = findVideo?.length > 0;
+                    const { favourited, watched = true } = req.body;
+                    console.log({ doesStatsExist })
                     if (doesStatsExist) {
                         //update it
                         const response = await updateStats(token, {
@@ -37,12 +40,49 @@ export default async function stats(req, res) {
                         res.send({ data: response });
                     }
                 }
+                else {
+                    res.status(500).send({ msg: "videoId is required" });
+                }
 
             }
         }
         catch (error) {
             console.error("Error occured /stats", error);
             res.status(500).send({ done: false, error: error?.message });
+        }
+    }
+    else {
+
+        const token = req.cookies.token;
+        console.log({token});
+        console.log({req})
+
+        if (!token) {
+            res.status(403).send({});
+        }
+        else {
+            console.log(req.query)
+            const { videoId } = req.query;
+            console.log({videoId});
+            if (videoId) {
+                const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+                const userId = decodedToken.issuer;
+
+                const findVideo = await findVideoIdByUser(token, userId, videoId);
+                const doesStatsExist = findVideo?.length > 0;
+                const { favourited, watched = true } = req.body;
+                if (doesStatsExist) {
+                    res.send(findVideo);
+
+                }
+                else {
+                    res.status(404);
+                    res.send({ user: null, msg: "video not found" });
+
+                }
+            }
+
+
         }
     }
 }
