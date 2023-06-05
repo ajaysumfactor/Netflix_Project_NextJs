@@ -7,7 +7,7 @@ import NavBar from '@/components/navBar';
 Modal.setAppElement('#__next');
 import Like from '@/components/icons/like-icon';
 import Dislike from '@/components/icons/like-icon';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 
 
@@ -41,6 +41,36 @@ const Video = ({ video }) => {
   console.log("router------------------------------------------------->", router);
   const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 },
   } = video;
+  
+
+  //=====================================================================
+  // show default like and dislike which is in database currently
+  useEffect(() => {
+ const handleLikeDislikeService = async ()=>{
+  const response = await fetch(`/api/stats?videoId=${videoId}`,{
+    method: "GET",
+  });
+  const data = await response.json();
+  if(data.length>0){
+    const favourited=data[0].favourited;
+    if(favourited === 1){
+      setToggleLike(true);
+    }
+    else if(favourited === 0){
+      setToggleDisLike(true);
+    }
+  }
+ };
+ handleLikeDislikeService();
+  },[videoId]);
+
+
+
+
+
+
+
+
 
   const runRatingService = async(favourited) => {
     return await fetch("/api/stats",{
