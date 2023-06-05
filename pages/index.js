@@ -10,22 +10,12 @@ import SectionCards from "../components/card/section-cards";
 import {getWatchItAgainVideos, getVideos ,getPopularVideos} from "../lib/videos";
 import { startFetchMyQuery } from "../lib/db/hasura";
 import { verifyToken } from '@/lib/utils'
+import { redirectUser } from '@/utils/redirectUser'
 
  
 export async function getServerSideProps(context) {
-  const token = context.req ? context.req.cookies.token : null;
-  console.log({token});
-   const userId= await verifyToken(token);
-   console.log({userId});
-   if(!userId){
-    return {
-      props: {},
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-   }
+ 
+   const {userId,token} = await redirectUser(context);  
    const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
 
   console.log({ watchItAgainVideos });
