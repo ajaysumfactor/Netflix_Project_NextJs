@@ -5,15 +5,6 @@ export const redirectUser = async(context)=>{
     console.log({token});
      const userId= await verifyToken(token);
      console.log({userId});
-     if(!userId){
-      return {
-        props: {},
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-     }
      return {
         userId,token
      };
