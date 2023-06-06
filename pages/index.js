@@ -26,8 +26,6 @@ export async function getServerSideProps(context) {
     };
    }
    const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
-
-  console.log({ watchItAgainVideos });
   const disneyVideos = await getVideos("disney trailer");
   const travelVideos = await getVideos("travel trailer");
   const productivityVideos = await getVideos("productivity trailer");
@@ -39,10 +37,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos,watchItAgainVideos }) {
-  // console.log(disneyVideos);
-  // console.log({magic});
-  // startFetchMyQuery();
-  console.log({watchItAgainVideos});
+  
 
    return (
     <>

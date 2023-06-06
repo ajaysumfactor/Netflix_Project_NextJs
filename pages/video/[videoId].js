@@ -14,8 +14,7 @@ import { useState,useEffect } from 'react';
 export async function getStaticProps(context) {
   const videoId = context.params.videoId;
   const videoArray = await getYouTubeVideoById(videoId);
-  console.log("--------videoArray", videoArray);
-  return {
+   return {
     props: {
       video: videoArray.length > 0 ? videoArray[0] : {},
     },
@@ -38,8 +37,7 @@ const Video = ({ video }) => {
   const videoId=router.query.videoId;
   const [toggleLike,setToggleLike]=useState(false);
   const [toggleDisLike,setToggleDisLike]=useState(false);
-  console.log("router------------------------------------------------->", router);
-  const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 },
+   const { title, publishTime, description, channelTitle, statistics: { viewCount } = { viewCount: 0 },
   } = video;
   
 
@@ -51,8 +49,7 @@ const Video = ({ video }) => {
     method: "GET",
   });
   const data = await response.json();
-  console.log(data);
-  if(data.length>0){
+   if(data.length>0){
     const favourited=data[0].favourited;
     if(favourited === 1){
       setToggleLike(true);
@@ -87,25 +84,21 @@ const Video = ({ video }) => {
     });
   };
   const handleToggleDislike=async()=>{
-    console.log("handleToggleDislike");
-    setToggleDisLike(!toggleDisLike);
+     setToggleDisLike(!toggleDisLike);
     setToggleLike(toggleDisLike);
     const val=!toggleDisLike;
     const favourited = val? 0 :1;
     const response = await runRatingService(favourited);
-    console.log("data",await response.json());
-  };
+   };
   const handleToggleLike=async ()=>{
-    console.log("handleToggleLike");
-    setToggleLike(!toggleLike);
+     setToggleLike(!toggleLike);
     setToggleDisLike(toggleLike);
     const val=!toggleLike;
     setToggleLike(val);
 
     const favourited = val? 1 :0;
     const response = await runRatingService(favourited);
-    console.log("data",await response.json());
-
+ 
   }
   return (
     <div className={styles.container}>

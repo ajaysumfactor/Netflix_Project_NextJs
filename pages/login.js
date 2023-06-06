@@ -31,25 +31,21 @@ const Login = () => {
     }, [router]);
 
     const handleOnChangeEmail = (e) => {
-        //    console.log("event",e);
-        setUserMsg("");
+         setUserMsg("");
         const email = e.target.value;
         setEmail(email);
     }
     const handleLoginWithEmail = async (e) => {
-        console.log("Say hii! button");
-        e.preventDefault();
+         e.preventDefault();
         setIsLoading(true);
         if (email) {
 
-            //    console.log("user logged in ")
-            //    router.push("/");
+           
             try {
                 const DIDToken = await magic.auth.loginWithMagicLink({
                     email,
                 });
-                console.log(DIDToken);
-                if (DIDToken) {//render to home page if DIDToken is successfully generated 
+                 if (DIDToken) {//render to home page if DIDToken is successfully generated 
                     // setIsLoading(false);
                     const response = await fetch("/api/login", {
                         method: 'POST',
@@ -60,8 +56,7 @@ const Login = () => {
                     });
                     const loggedInResponse = await response.json();
                     if (loggedInResponse.done) {
-                        console.log({ loggedInResponse });
-                        router.push("/");
+                         router.push("/");
 
                     }
                     else {
