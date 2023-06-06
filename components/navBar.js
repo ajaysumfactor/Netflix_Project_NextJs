@@ -8,6 +8,7 @@ import { magic } from "../lib/magic-client.js";
 const NavBar = () => {
     // const { username } = props;
     const [username, setUserName] = useState('');
+    const [didToken, setDidToken] = useState("");
 
     const [showDropdown, setShowDropdown] = useState(false);
     const router = useRouter();
@@ -19,6 +20,7 @@ const NavBar = () => {
                 console.log({didToken});
                 if (email) {
                     setUserName(email);
+                    setDidToken(didToken);
                 }
             } catch (error) {
                 console.error("metadata magic email error: ", error);
@@ -42,18 +44,25 @@ const NavBar = () => {
     const handleSignOut = async (e) => {
         e.preventDefault();
         try {
-            await magic.user.logout();
-            console.log(await magic.user.isLoggedIn());
-            router.push("/login"); // => `true` or `false`
-        } catch (error) {
-            console.error("error logging out : ", error);
+            const response = await fetch("/api/logout", {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${didToken}`,
+                "Content-Type": "application/json",
+              },
+            });
+      
+            const res = await response.json();
+          } catch (error) {
+            console.error("Error logging out", error);
             router.push("/login");
-        }
+          }
     }
     return (
         <div className={styles.container}>
             <div className={styles.wrapper}>
-                <a className={styles.logoLink}>
+                <Link className={styles.logoLink} href="/">
+                    
                     {/* <div className={styles.logoWrapper}>
                     Netflix
                 </div> */}
@@ -65,7 +74,8 @@ const NavBar = () => {
                             height="34"
                         />
                     </div>
-                </a>
+                    
+                </Link>
 
                 <ul className={styles.navItems}>
                     <li className={styles.navItem} onClick={handleOnClickHome}>Home</li>

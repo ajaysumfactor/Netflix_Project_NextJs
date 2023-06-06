@@ -7,11 +7,25 @@ const inter = Inter({ subsets: ['latin'] })
 import NavBar from '@/components/navBar'
 import Card from '@/components/card/card.js'
 import SectionCards from "../components/card/section-cards";
-import { getVideos ,getPopularVideos} from "../lib/videos";
+import {getWatchItAgainVideos, getVideos ,getPopularVideos} from "../lib/videos";
 import { startFetchMyQuery } from "../lib/db/hasura";
+import { verifyToken } from '@/lib/utils'
+import { redirectUser } from '@/utils/redirectUser'
 
  
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
+ 
+   const {userId,token} = await redirectUser(context);  
+   if(!userId){
+    return {
+      props: {},
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+   }
+   const watchItAgainVideos = await getWatchItAgainVideos(userId, token);
   const disneyVideos = await getVideos("disney trailer");
   const travelVideos = await getVideos("travel trailer");
   const productivityVideos = await getVideos("productivity trailer");
@@ -19,13 +33,11 @@ export async function getServerSideProps() {
 
 
 
-  return { props: { disneyVideos, travelVideos, productivityVideos, popularVideos } };
+  return { props: { disneyVideos, travelVideos, productivityVideos, popularVideos,watchItAgainVideos } };
 }
 
-export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos }) {
-  // console.log(disneyVideos);
-  // console.log({magic});
-  // startFetchMyQuery();
+export default function Home({ disneyVideos, travelVideos, productivityVideos, popularVideos,watchItAgainVideos }) {
+  
 
    return (
     <>
@@ -39,14 +51,16 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
 
       <NavBar />
       <Banner
-        title="Clifford the good cat"
-        subTitle="a very cute cat"
+        title="Clifford the big red dog"
+        subTitle="a very good dog"
         imgUrl="/static/animal.webp"
         videoId="4zH5iYM4wJo"
       />
       <div className={styles.sectionWrapper}>
         <SectionCards title="Disney" videos={disneyVideos} size="large" />
         <SectionCards title="Travel" videos={travelVideos} size="small" />
+        <SectionCards title="Watch it again" videos={watchItAgainVideos} size="small" />
+
         <SectionCards title="Productivity" videos={productivityVideos} size="medium" />
         <SectionCards title="Popular" videos={popularVideos} size="small" />
 

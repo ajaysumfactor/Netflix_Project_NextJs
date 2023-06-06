@@ -1,16 +1,16 @@
 import jwt from 'jsonwebtoken';
 import { mAdmin } from "@/lib/magic";
-import { isNewUser, createNewUser } from '@/lib/db/hasura';
+import { isNewUser, createNewUser } from '@/lib/db/hasura'; 
 import { setTokenCookie } from '@/lib/cookies';
 export default async function login(req, res) {
     if (req.method === "POST") {
         try {
             const auth = req.headers.authorization; //Barrer Token
             const didToken = auth ? auth.substr(7) : ''; //Extract Token here in this it is didToken
-            console.log({ didToken });
+             
             //invoke magic here
             const metadata = await mAdmin.users.getMetadataByToken(didToken);
-            console.log({ metadata });//get all the metadata(issuer,publicAddress,email);
+            //get all the metadata(issuer,publicAddress,email);
 
 
 
@@ -28,7 +28,7 @@ export default async function login(req, res) {
                     },
                 }, process.env.JWT_SECRET
             );
-            // console.log({token});
+            
 
             // implement if user exist?
             const isNewUserQuery = await isNewUser(token, metadata.issuer);
