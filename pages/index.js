@@ -56,8 +56,8 @@ export default function Home({ disneyVideos, travelVideos, productivityVideos, p
 
       <NavBar />
       <Banner
-        title="Clifford the good cat"
-        subTitle="a very cute cat"
+        title="Clifford the big red dog"
+        subTitle="a very good dog"
         imgUrl="/static/animal.webp"
         videoId="4zH5iYM4wJo"
       />
