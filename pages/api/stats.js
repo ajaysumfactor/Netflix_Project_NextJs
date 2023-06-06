@@ -1,7 +1,7 @@
  import { findVideoIdByUser, insertStats, updateStats } from '@/lib/db/hasura';
  import { verifyToken } from '@/lib/utils';
 export default async function stats(req, res) {
-    if (req.method === 'POST') {
+  
         try {
             const token = req.cookies.token;
 
@@ -62,5 +62,5 @@ export default async function stats(req, res) {
             console.error("Error occured /stats", error);
             res.status(500).send({ done: false, error: error?.message });
         }
+    
     }
-}
