@@ -5,8 +5,8 @@ export function middleware(req,ev){
     //check the token
     //if token is valid
     //|| if page is /login
-    // return NextResponse.next();
-    return new Response("hello world");
+    return NextResponse.next();
+    // return new Response("hello world");
 
     //if no token
     //redirect to login
