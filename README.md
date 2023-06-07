@@ -218,4 +218,42 @@ GraphQL Used By--facebook,intuit,pinerest,Github,Coursera,Paypal,Starbugs
 # ==================================================================================================================
 
 # Section_19
-    
+
+## App Architecture
+    In this section we focus on --
+    1. My list page of a particular user
+        1. My list page contain list of liked video(favourited) only.
+        2. If any video present in myList as soon as i dislike that video particular video get removed from that list.
+    2. Watch it Again section
+        1. Watch it again --List of liked or dislike video (either video is liked or dislike it will be in watch it again)
+
+#### Like and dislike button functionality added.
+#### like and dislike button styling done
+#### like and dislike button stats added (if like is clicked dislike is disappear vice-verca)
+## Stats API creation
+    1. Read token from cookies
+    2. Verify JSON token(JWT)
+    3. Find video by Id and by user
+        if(present)
+        {
+            update stats for that user
+        }
+        else
+        {
+            create new stats for that user
+        }
+
+## Watch it again 
+    1. Get videosId form the database where (userId and watched:"true)
+    2. Render it on page 
+
+### Serverside redirect
+1. An optional redirecting value to allow redirecting to internal or external resources.
+2. Redire to user to login page if user not logged in.
+## My List Page 
+    1. Make a query to database to get VideoId for the valid user where(favourited :1 )
+    2. Render it on My list page .
+
+## Logout Api 
+    Make a logout API Such that when a user click on sign out (logout.js will invoked).
+        1. When it invoked it delete the cookies.By which after refreshing the page ,user would not logged in.
