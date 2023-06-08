@@ -271,3 +271,17 @@ GraphQL Used By--facebook,intuit,pinerest,Github,Coursera,Paypal,Starbugs
 
 ## create middleware file in root folder as per new convention 
 #### (docs..)[https://nextjs.org/docs/pages/building-your-application/routing/middleware]
+
+## issue in deployment  (related source to resolve)
+#### (install jose library to verify token used in "/lib/utils.js")[https://github.com/panva/jose/blob/HEAD/docs/functions/jwt_verify.jwtVerify.md] 
+
+#### to get token from request in middleware.js use(.get("token"))
+    token is in (token.value);
+
+### While building next app there is some sort of restrictions:---
+#### (restrictions)[https://nextjs.org/docs/pages/api-reference/edge#unsupported-apis]
+    1. According to issue i use "jsonwebtoken" to verify the token --and jsonwebtoken uses (crypto module for node)
+        for further operation and doing some file operation their which is voileted by (edge run time)
+#### (crypto module)[https://www.w3schools.com/nodejs/ref_crypto.asp#:~:text=Definition%20and%20Usage,way%20of%20handling%20encrypted%20data.]
+
+#### To resolve i use jose library to verify token .
