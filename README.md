@@ -257,3 +257,17 @@ GraphQL Used By--facebook,intuit,pinerest,Github,Coursera,Paypal,Starbugs
 ## Logout Api 
     Make a logout API Such that when a user click on sign out (logout.js will invoked).
         1. When it invoked it delete the cookies.By which after refreshing the page ,user would not logged in.
+
+
+
+
+# Section_20 ---------------------------------------------------------
+
+## MiddleWare
+    1. Enable you to use code over configration.
+    2. This gives us fully flexibility in next.js ,because i can run code before request is completed.
+    3. Based on user incomming request you can modify the response by rewriting,redirecting,and adding header.
+    4. Every time request is come it check if token is valid/exist or not
+
+## create middleware file in root folder as per new convention 
+#### (docs..)[https://nextjs.org/docs/pages/building-your-application/routing/middleware]

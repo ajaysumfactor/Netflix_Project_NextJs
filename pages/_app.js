@@ -7,7 +7,7 @@ import Loading from "../components/loading/loading.js";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
- const [isLoading,setIsLoading]=useState(true);
+ const [isLoading,setIsLoading]=useState(false);
   useEffect(() => {
     const handleLoggedIn = async () => {
       const isLoggedIn = await magic.user.isLoggedIn();
