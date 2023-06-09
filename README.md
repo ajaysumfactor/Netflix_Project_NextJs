@@ -285,3 +285,12 @@ GraphQL Used By--facebook,intuit,pinerest,Github,Coursera,Paypal,Starbugs
 #### (crypto module)[https://www.w3schools.com/nodejs/ref_crypto.asp#:~:text=Definition%20and%20Usage,way%20of%20handling%20encrypted%20data.]
 
 #### To resolve i use jose library to verify token .
+
+
+# =====================================================================================================================
+# Section_21  (Deployment of netflix project)
+### Build on local system---npm run build
+### run project after build--npm run start
+#### (Netflix-project-deployed URL)[https://netflix-project-nextjs-ajaysumfactor.vercel.app/]
+
+
